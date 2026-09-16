@@ -1,7 +1,3 @@
-Aqui está o `README.md` completo e atualizado com as informações dos integrantes, a User Story escolhida e os cenários devidamente atribuídos, omitindo o erro do cenário 5:
-
----
-
 # Educação Continuada Gamificada
 
 ## Descrição do Estudo de Caso
@@ -29,7 +25,7 @@ A User Story escolhida para o detalhamento BDD e TDD foi a **US1** (elaborada po
 
 ---
 
-## BDD - Scenarios (Critérios de Aceitação)
+## BDD - Scenarios (Critérios de Aceitação) e Evidências TDD
 
 ### Cenário 1: Tornar-se Premium ao completar cursos
 
@@ -42,6 +38,23 @@ A User Story escolhida para o detalhamento BDD e TDD foi a **US1** (elaborada po
 * **E** sua assinatura deverá ser alterada
 * **E** deve possuir acesso ao recebimento dos voucher
 
+#### 🔴🟢🔵 Evidências TDD (RGB) - Cenário 1
+
+* **RED (Teste Falhando):**
+> `[Insira a imagem do print do teste falhando aqui]`
+
+
+* **GREEN (Teste Passando):**
+> `[Insira a imagem do print do teste passando aqui]`
+
+
+* **BLUE (Refatoração e 100% de Cobertura):**
+> `[Insira a imagem do print de cobertura de testes aqui]`
+
+
+
+---
+
 ### Cenário 2: Receber moedas como Premium
 
 **Redigido por:** Pedro Henrique Santa
@@ -51,6 +64,23 @@ A User Story escolhida para o detalhamento BDD e TDD foi a **US1** (elaborada po
 * **Quando** conquistar mais 1 curso
 * **Então** terá sua assinatura alterada
 * **E** receber 3 moedas
+
+#### 🔴🟢🔵 Evidências TDD (RGB) - Cenário 2
+
+* **RED (Teste Falhando):**
+> `[Insira a imagem do print do teste falhando aqui]`
+
+
+* **GREEN (Teste Passando):**
+> `[Insira a imagem do print do teste passando aqui]`
+
+
+* **BLUE (Refatoração e 100% de Cobertura):**
+> `[Insira a imagem do print de cobertura de testes aqui]`
+
+
+
+---
 
 ### Cenário 3: Receber voucher e acesso a projetos reais
 
@@ -63,6 +93,23 @@ A User Story escolhida para o detalhamento BDD e TDD foi a **US1** (elaborada po
 * **E** receber 1 voucher
 * **E** ter acesso a projetos reais, durante os cursos
 
+#### 🔴🟢🔵 Evidências TDD (RGB) - Cenário 3
+
+* **RED (Teste Falhando):**
+> `[Insira a imagem do print do teste falhando aqui]`
+
+
+* **GREEN (Teste Passando):**
+> `[Insira a imagem do print do teste passando aqui]`
+
+
+* **BLUE (Refatoração e 100% de Cobertura):**
+> `[Insira a imagem do print de cobertura de testes aqui]`
+
+
+
+---
+
 ### Cenário 4: Resgatar voucher em projeto real
 
 **Redigido por:** Gabriel Pelincel Ramalho
@@ -73,3 +120,16 @@ A User Story escolhida para o detalhamento BDD e TDD foi a **US1** (elaborada po
 * **Então** terá sua assinatura alterada
 * **E** receber 1 voucher
 * **E** resgatar 1 voucher em 1 projeto real
+
+#### 🔴🟢🔵 Evidências TDD (RGB) - Cenário 4
+
+* **RED (Teste Falhando):**
+> `[Insira a imagem do print do teste falhando aqui]`
+
+
+* **GREEN (Teste Passando):**
+> `[Insira a imagem do print do teste passando aqui]`
+
+
+* **BLUE (Refatoração e 100% de Cobertura):**
+> `[Insira a imagem do print de cobertura de testes aqui]`
