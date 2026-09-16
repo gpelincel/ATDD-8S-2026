@@ -14,12 +14,12 @@ criptomoeda.
 
 ## User Stories (US)
 
-* **US1 (por Pedro Henrique Santa):** COMO Aluno do nível básico, QUERO que minha assinatura seja alterada para “Premium” automaticamente quando conquistar os 12 cursos PARA ter acesso ao recebimento dos vouchers e moedas.
+* **US1 (por Pedro Henrique Santana):** COMO Aluno do nível básico, QUERO que minha assinatura seja alterada para “Premium” automaticamente quando conquistar os 12 cursos PARA ter acesso ao recebimento dos vouchers e moedas.
 * **US2 (por Gabriel Pelincel Ramalho):** COMO Aluno do nível Premium, QUERO usar minhas moedas PARA comprar novos cursos.
 
 ### US Escolhida
 
-A User Story escolhida para o detalhamento BDD e TDD foi a **US1** (elaborada por Pedro Henrique Santa):
+A User Story escolhida para o detalhamento BDD e TDD foi a **US1** (elaborada por Pedro Henrique Santana):
 
 > *COMO Aluno do nível básico, QUERO que minha assinatura seja alterada para “Premium” automaticamente quando conquistar os 12 cursos PARA ter acesso ao recebimento dos vouchers e moedas.*
 
@@ -29,7 +29,7 @@ A User Story escolhida para o detalhamento BDD e TDD foi a **US1** (elaborada po
 
 ### Cenário 1: Tornar-se Premium ao completar cursos
 
-**Redigido por:** Pedro Henrique Santa
+**Redigido por:** Pedro Henrique Santana
 
 * **Dado** que o aluno possui 11 cursos conquistados
 * **E** possui assinatura básica
@@ -57,7 +57,7 @@ A User Story escolhida para o detalhamento BDD e TDD foi a **US1** (elaborada po
 
 ### Cenário 2: Receber moedas como Premium
 
-**Redigido por:** Pedro Henrique Santa
+**Redigido por:** Pedro Henrique Santana
 
 * **Dado** que o aluno possui 11 cursos conquistados
 * **E** possui assinatura básica
@@ -94,20 +94,58 @@ A User Story escolhida para o detalhamento BDD e TDD foi a **US1** (elaborada po
 * **E** ter acesso a projetos reais, durante os cursos
 
 #### 🔴🟢🔵 Evidências TDD (RGB) - Cenário 3
+* **Teste Unitário:**
+````
+@Test
+    public void deveReceberUmVoucherEAcessoAProjetosReaisAoTornarPremium() {
+        Aluno aluno = new Aluno();
+        aluno.setAssinatura("Básica");
+        aluno.setCursosConquistados(11);
+        aluno.setVouchers(0);
 
+        aluno.conquistarCurso();
+
+        assertEquals("Premium", aluno.getAssinatura(), "A assinatura deveria ser Premium");
+        assertEquals(1, aluno.getVouchers(), "O aluno deveria ter recebido 1 voucher");
+        assertTrue(aluno.isAcessoProjetosReais(), "O aluno deveria ter acesso a projetos reais");
+    }
+````
 * **RED (Teste Falhando):**
-> `[Insira a imagem do print do teste falhando aqui]`
+![img_1.png](imgs/img_1.png)
 
 
 * **GREEN (Teste Passando):**
-> `[Insira a imagem do print do teste passando aqui]`
+![img_2.png](imgs/img_2.png)
 
 
 * **BLUE (Refatoração e 100% de Cobertura):**
-> `[Insira a imagem do print de cobertura de testes aqui]`
 
+Teste Refatorado para garantir maior cobertura:
+````
+@Test
+    public void deveReceberUmVoucherEAcessoAProjetosReaisAoTornarPremium() {
+        Aluno aluno = new Aluno();
+        aluno.setAssinatura("Básica");
+        aluno.setCursosConquistados(10);
+        aluno.setVouchers(0);
+        aluno.setMoedas(0);
+        aluno.setAcessoVouchers(false);
 
+        aluno.setAcessoProjetosReais(false);
 
+        aluno.conquistarCurso();
+
+        aluno.conquistarCurso();
+
+        aluno.conquistarCurso();
+
+        assertEquals(13, aluno.getCursosConquistados());
+        assertEquals("Premium", aluno.getAssinatura());
+        assertTrue(aluno.isAcessoProjetosReais());
+    }
+````
+![img_3.png](imgs/img_3.png)
+![img_4.png](imgs/img_4.png)
 ---
 
 ### Cenário 4: Resgatar voucher em projeto real
