@@ -76,4 +76,11 @@ public class Aluno {
             this.acessoVouchers = true;
         }
     }
+
+    public void resgatarVoucher(ProjetoReal projeto) {
+        if (this.vouchers > 0) {
+            this.vouchers--;
+            projeto.aplicarVoucher();
+        }
+    }
 }

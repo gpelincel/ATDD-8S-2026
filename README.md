@@ -160,14 +160,58 @@ Teste Refatorado para garantir maior cobertura:
 * **E** resgatar 1 voucher em 1 projeto real
 
 #### 🔴🟢🔵 Evidências TDD (RGB) - Cenário 4
+* **Teste Unitário:**
+````
+@Test
+    public void devePermitirResgateDeVoucherEmProjetoRealAposTornarPremium() {
+        Aluno aluno = new Aluno();
+        aluno.setAssinatura("Básica");
+        aluno.setCursosConquistados(11);
+        aluno.setVouchers(0);
 
+        aluno.conquistarCurso();
+
+        ProjetoReal projeto = new ProjetoReal();
+        aluno.resgatarVoucher(projeto);
+
+        assertEquals("Premium", aluno.getAssinatura());
+        assertEquals(0, aluno.getVouchers(), "O voucher deveria ter sido descontado");
+        assertTrue(projeto.isVoucherAplicado(), "O projeto deveria estar com o voucher aplicado");
+    }
+````
 * **RED (Teste Falhando):**
-> `[Insira a imagem do print do teste falhando aqui]`
+![img.png](imgs/img4_1.png)
 
 
 * **GREEN (Teste Passando):**
-> `[Insira a imagem do print do teste passando aqui]`
+![img.png](imgs/img4_2.png)
 
 
 * **BLUE (Refatoração e 100% de Cobertura):**
-> `[Insira a imagem do print de cobertura de testes aqui]`
+
+Teste Refatorado para garantir maior cobertura:
+````
+@Test
+    public void devePermitirResgateDeVoucherEmProjetoRealAposTornarPremium() {
+        Aluno aluno = new Aluno();
+        aluno.setAssinatura("Básica");
+        aluno.setCursosConquistados(11);
+        aluno.setVouchers(0);
+
+        ProjetoReal projetoSemSaldo = new ProjetoReal();
+        ProjetoReal projetoComSaldo = new ProjetoReal();
+
+        aluno.resgatarVoucher(projetoSemSaldo);
+        assertFalse(projetoSemSaldo.isVoucherAplicado(), "Não deve aplicar voucher se não tiver saldo");
+
+        aluno.conquistarCurso();
+
+        aluno.resgatarVoucher(projetoComSaldo);
+
+        assertEquals("Premium", aluno.getAssinatura(), "A assinatura deveria ser Premium");
+        assertEquals(0, aluno.getVouchers(), "O voucher deveria ter sido descontado");
+        assertTrue(projetoComSaldo.isVoucherAplicado(), "O voucher deveria ter sido aplicado no projeto");
+    }
+````
+![img_1.png](imgs/img4_3.png)
+![img.png](imgs/img4_4.png)
