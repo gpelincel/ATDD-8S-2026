@@ -292,6 +292,8 @@ Teste Refatorado para garantir maior cobertura:
 * H2 rodando:
 ![img.png](imgs/h2.png)
 * Swagger rodando:
-![img.png](swagger.png)
+![img.png](imgs/swagger.png)
 * PgAdmin rodando:
-* ![img_1.png](pgadmin.png)
+![img_1.png](imgs/pgadmin.png)
+* Frontend:
+![img.png](imgs/frontend.png)
