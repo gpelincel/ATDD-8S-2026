@@ -27,7 +27,70 @@ A User Story escolhida para o detalhamento BDD e TDD foi a **US1** (elaborada po
 
 ## BDD - Scenarios (Critérios de Aceitação) e Evidências TDD
 
-### Cenário 1: Tornar-se Premium ao completar cursos
+### Cenário 1: Receber moedas como Premium
+
+**Redigido por:** Pedro Henrique Santana
+
+* **Dado** que o aluno possui 11 cursos conquistados
+* **E** possui assinatura básica
+* **Quando** conquistar mais 1 curso
+* **Então** terá sua assinatura alterada
+* **E** receber 3 moedas
+
+#### 🔴🟢🔵 Evidências TDD (RGB) - Cenário 1
+* **Teste Unitário:**
+````
+@Test
+    public void deveMudarParaPremiumEGanharTresMoedasAoAtingirDozeCursos() {
+        Aluno aluno = new Aluno();
+        aluno.setAssinatura("Básica");
+        aluno.setCursosConquistados(11);
+        aluno.setMoedas(0);
+
+        aluno.conquistarCurso();
+
+        assertEquals(12, aluno.getCursosConquistados(), "Deve contabilizar o 12º curso");
+        assertEquals("Premium", aluno.getAssinatura(), "A assinatura deve mudar para Premium");
+        assertEquals(3, aluno.getMoedas(), "O aluno deve ganhar 3 moedas");
+    }
+````
+* **RED (Teste Falhando):**
+![img.png](imgs/img_1_1.png)
+
+* **GREEN (Teste Passando):**
+![img.png](imgs/img_1_2.png)
+
+* **BLUE (Refatoração e 100% de Cobertura):**
+Teste Refatorado para maior cobertura:
+```
+@Test
+    public void deveMudarParaPremiumEGanharTresMoedasAoAtingirDozeCursos() {
+        Aluno aluno = new Aluno();
+        aluno.setAssinatura("Básica");
+        aluno.setCursosConquistados(10);
+        aluno.setMoedas(0);
+
+        aluno.conquistarCurso();
+        assertEquals(11, aluno.getCursosConquistados(), "Deve contabilizar o 11º curso");
+        assertEquals("Básica", aluno.getAssinatura(), "Deve continuar com assinatura Básica");
+        assertEquals(0, aluno.getMoedas(), "Não deve ganhar moedas ainda");
+
+        aluno.conquistarCurso();
+        assertEquals(12, aluno.getCursosConquistados(), "Deve contabilizar o 12º curso");
+        assertEquals("Premium", aluno.getAssinatura(), "A assinatura deve mudar para Premium");
+        assertEquals(3, aluno.getMoedas(), "O aluno deve ganhar 3 moedas");
+
+        aluno.conquistarCurso();
+        assertEquals(13, aluno.getCursosConquistados(), "Deve contabilizar o 13º curso");
+        assertEquals("Premium", aluno.getAssinatura(), "Deve se manter Premium");
+        assertEquals(3, aluno.getMoedas(), "Não deve ganhar moedas duplicadas ao passar de 12 cursos");
+    }
+```
+![img.png](imgs/img_1_3.png)
+![img.png](imgs/img_1_4.png)
+
+---
+### Cenário 2: Tornar-se Premium ao completar cursos
 
 **Redigido por:** Pedro Henrique Santana
 
@@ -38,48 +101,56 @@ A User Story escolhida para o detalhamento BDD e TDD foi a **US1** (elaborada po
 * **E** sua assinatura deverá ser alterada
 * **E** deve possuir acesso ao recebimento dos voucher
 
-#### 🔴🟢🔵 Evidências TDD (RGB) - Cenário 1
-
-* **RED (Teste Falhando):**
-> `[Insira a imagem do print do teste falhando aqui]`
-
-
-* **GREEN (Teste Passando):**
-> `[Insira a imagem do print do teste passando aqui]`
-
-
-* **BLUE (Refatoração e 100% de Cobertura):**
-> `[Insira a imagem do print de cobertura de testes aqui]`
-
-
-
----
-
-### Cenário 2: Receber moedas como Premium
-
-**Redigido por:** Pedro Henrique Santana
-
-* **Dado** que o aluno possui 11 cursos conquistados
-* **E** possui assinatura básica
-* **Quando** conquistar mais 1 curso
-* **Então** terá sua assinatura alterada
-* **E** receber 3 moedas
 
 #### 🔴🟢🔵 Evidências TDD (RGB) - Cenário 2
 
-* **RED (Teste Falhando):**
-> `[Insira a imagem do print do teste falhando aqui]`
+* **Teste Unitário:**
+````
+@Test
+    public void deveAlterarAssinaturaELiberarAcessoAVouchersAoAtingirDozeCursos() {
+        Aluno aluno = new Aluno();
+        aluno.setAssinatura("Básica");
+        aluno.setCursosConquistados(11);
+        aluno.setAcessoVouchers(false);
 
+        aluno.conquistarCurso();
+
+        assertEquals(12, aluno.getCursosConquistados());
+        assertEquals("Premium", aluno.getAssinatura());
+        assertTrue(aluno.isAcessoVouchers(), "O aluno deveria ter acesso aos vouchers");
+    }
+````
+* **RED (Teste Falhando):**
+![img.png](imgs/img_2_1.png)
 
 * **GREEN (Teste Passando):**
-> `[Insira a imagem do print do teste passando aqui]`
-
+![img.png](imgs/img_2_2.png)
 
 * **BLUE (Refatoração e 100% de Cobertura):**
-> `[Insira a imagem do print de cobertura de testes aqui]`
+  Teste Refatorado para maior cobertura:
+```
+@Test
+    public void deveAlterarAssinaturaELiberarAcessoAVouchersAoAtingirDozeCursos() {
+        Aluno aluno = new Aluno();
+        aluno.setAssinatura("Básica");
+        aluno.setCursosConquistados(10);
+        aluno.setAcessoVouchers(false);
 
+        aluno.conquistarCurso();
+        assertFalse(aluno.isAcessoVouchers(), "Ainda não deve ter acesso a vouchers com 11 cursos");
 
+        aluno.conquistarCurso();
+        assertEquals(12, aluno.getCursosConquistados());
+        assertEquals("Premium", aluno.getAssinatura());
+        assertTrue(aluno.isAcessoVouchers(), "Deve possuir acesso ao recebimento dos voucher");
 
+        aluno.conquistarCurso();
+        assertEquals(13, aluno.getCursosConquistados());
+        assertTrue(aluno.isAcessoVouchers());
+    }
+```
+![img.png](imgs/img_2_3.png)
+![img.png](imgs/img_2_4.png)
 ---
 
 ### Cenário 3: Receber voucher e acesso a projetos reais
