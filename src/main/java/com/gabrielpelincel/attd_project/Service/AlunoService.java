@@ -16,6 +16,13 @@ public class AlunoService {
         this.alunoRepository = alunoRepository;
     }
 
+    public AlunoResponseDTO buscarAluno(Long idAluno) {
+        Aluno aluno = alunoRepository.findById(idAluno)
+                .orElseThrow(() -> new RuntimeException("Aluno não encontrado com o ID: " + idAluno));
+
+        return new AlunoResponseDTO(aluno);
+    }
+
     public AlunoResponseDTO criarAluno(AlunoRequestDTO requestDTO) {
         Aluno aluno = new Aluno();
 

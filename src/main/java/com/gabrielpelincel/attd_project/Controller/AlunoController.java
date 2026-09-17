@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/alunos")
+@CrossOrigin(origins = "*")
 public class AlunoController {
 
     private final AlunoService alunoService;
@@ -40,6 +41,16 @@ public class AlunoController {
             return ResponseEntity.ok(response);
         } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> buscarAluno(@PathVariable Long id) {
+        try {
+            AlunoResponseDTO response = alunoService.buscarAluno(id);
+            return ResponseEntity.ok(response);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }
 }
