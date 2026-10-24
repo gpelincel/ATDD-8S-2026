@@ -397,7 +397,7 @@ Organizei em três tabelas Markdown, mantendo o conteúdo original e corrigindo 
 
 ## C4 — Visão de Container (Desafio 1)
 
-Neste desafio, a decisão macro mantém o Core como um único container Spring Boot, porém explicitando que sua organização interna passa a ser modular por capacidades de negócio. Abaixo, a representação renderizada nativamente:
+Neste desafio, a decisão macro mantém o Core como um único container Spring Boot, porém explicitando que sua organização interna passa a ser modular por funcionalidade. Abaixo, o diagrama de arquitetura:
 
 ```mermaid
 flowchart TD
