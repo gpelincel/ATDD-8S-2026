@@ -14,14 +14,17 @@ criptomoeda.
 
 ## User Stories (US)
 
-* **US1 (por Pedro Henrique Santana):** COMO Aluno do nível básico, QUERO que minha assinatura seja alterada para “Premium” automaticamente quando conquistar os 12 cursos PARA ter acesso ao recebimento dos vouchers e moedas.
-* **US2 (por Gabriel Pelincel Ramalho):** COMO Aluno do nível Premium, QUERO usar minhas moedas PARA comprar novos cursos.
+* **US1 (por Pedro Henrique Santana):** COMO Aluno do nível básico, QUERO que minha assinatura seja alterada para
+  “Premium” automaticamente quando conquistar os 12 cursos PARA ter acesso ao recebimento dos vouchers e moedas.
+* **US2 (por Gabriel Pelincel Ramalho):** COMO Aluno do nível Premium, QUERO usar minhas moedas PARA comprar novos
+  cursos.
 
 ### US Escolhida
 
 A User Story escolhida para o detalhamento BDD e TDD foi a **US1** (elaborada por Pedro Henrique Santana):
 
-> *COMO Aluno do nível básico, QUERO que minha assinatura seja alterada para “Premium” automaticamente quando conquistar os 12 cursos PARA ter acesso ao recebimento dos vouchers e moedas.*
+> *COMO Aluno do nível básico, QUERO que minha assinatura seja alterada para “Premium” automaticamente quando conquistar
+os 12 cursos PARA ter acesso ao recebimento dos vouchers e moedas.*
 
 ---
 
@@ -38,7 +41,9 @@ A User Story escolhida para o detalhamento BDD e TDD foi a **US1** (elaborada po
 * **E** receber 3 moedas
 
 #### 🔴🟢🔵 Evidências TDD (RGB) - Cenário 1
+
 * **Teste Unitário:**
+
 ````
 @Test
     public void deveMudarParaPremiumEGanharTresMoedasAoAtingirDozeCursos() {
@@ -54,14 +59,16 @@ A User Story escolhida para o detalhamento BDD e TDD foi a **US1** (elaborada po
         assertEquals(3, aluno.getMoedas(), "O aluno deve ganhar 3 moedas");
     }
 ````
+
 * **RED (Teste Falhando):**
-![img.png](imgs/img_1_1.png)
+  ![img.png](imgs/img_1_1.png)
 
 * **GREEN (Teste Passando):**
-![img.png](imgs/img_1_2.png)
+  ![img.png](imgs/img_1_2.png)
 
 * **BLUE (Refatoração e 100% de Cobertura):**
-Teste Refatorado para maior cobertura:
+  Teste Refatorado para maior cobertura:
+
 ```
 @Test
     public void deveMudarParaPremiumEGanharTresMoedasAoAtingirDozeCursos() {
@@ -86,10 +93,12 @@ Teste Refatorado para maior cobertura:
         assertEquals(3, aluno.getMoedas(), "Não deve ganhar moedas duplicadas ao passar de 12 cursos");
     }
 ```
+
 ![img.png](imgs/img_1_3.png)
 ![img.png](imgs/img_1_4.png)
 
 ---
+
 ### Cenário 2: Tornar-se Premium ao completar cursos
 
 **Redigido por:** Pedro Henrique Santana
@@ -101,10 +110,10 @@ Teste Refatorado para maior cobertura:
 * **E** sua assinatura deverá ser alterada
 * **E** deve possuir acesso ao recebimento dos voucher
 
-
 #### 🔴🟢🔵 Evidências TDD (RGB) - Cenário 2
 
 * **Teste Unitário:**
+
 ````
 @Test
     public void deveAlterarAssinaturaELiberarAcessoAVouchersAoAtingirDozeCursos() {
@@ -120,14 +129,16 @@ Teste Refatorado para maior cobertura:
         assertTrue(aluno.isAcessoVouchers(), "O aluno deveria ter acesso aos vouchers");
     }
 ````
+
 * **RED (Teste Falhando):**
-![img.png](imgs/img_2_1.png)
+  ![img.png](imgs/img_2_1.png)
 
 * **GREEN (Teste Passando):**
-![img.png](imgs/img_2_2.png)
+  ![img.png](imgs/img_2_2.png)
 
 * **BLUE (Refatoração e 100% de Cobertura):**
   Teste Refatorado para maior cobertura:
+
 ```
 @Test
     public void deveAlterarAssinaturaELiberarAcessoAVouchersAoAtingirDozeCursos() {
@@ -149,6 +160,7 @@ Teste Refatorado para maior cobertura:
         assertTrue(aluno.isAcessoVouchers());
     }
 ```
+
 ![img.png](imgs/img_2_3.png)
 ![img.png](imgs/img_2_4.png)
 ---
@@ -165,7 +177,9 @@ Teste Refatorado para maior cobertura:
 * **E** ter acesso a projetos reais, durante os cursos
 
 #### 🔴🟢🔵 Evidências TDD (RGB) - Cenário 3
+
 * **Teste Unitário:**
+
 ````
 @Test
     public void deveReceberUmVoucherEAcessoAProjetosReaisAoTornarPremium() {
@@ -181,17 +195,19 @@ Teste Refatorado para maior cobertura:
         assertTrue(aluno.isAcessoProjetosReais(), "O aluno deveria ter acesso a projetos reais");
     }
 ````
+
 * **RED (Teste Falhando):**
-![img_1.png](imgs/img_1.png)
+  ![img_1.png](imgs/img_1.png)
 
 
 * **GREEN (Teste Passando):**
-![img_2.png](imgs/img_2.png)
+  ![img_2.png](imgs/img_2.png)
 
 
 * **BLUE (Refatoração e 100% de Cobertura):**
 
 Teste Refatorado para garantir maior cobertura:
+
 ````
 @Test
     public void deveReceberUmVoucherEAcessoAProjetosReaisAoTornarPremium() {
@@ -215,6 +231,7 @@ Teste Refatorado para garantir maior cobertura:
         assertTrue(aluno.isAcessoProjetosReais());
     }
 ````
+
 ![img_3.png](imgs/img_3.png)
 ![img_4.png](imgs/img_4.png)
 ---
@@ -231,7 +248,9 @@ Teste Refatorado para garantir maior cobertura:
 * **E** resgatar 1 voucher em 1 projeto real
 
 #### 🔴🟢🔵 Evidências TDD (RGB) - Cenário 4
+
 * **Teste Unitário:**
+
 ````
 @Test
     public void devePermitirResgateDeVoucherEmProjetoRealAposTornarPremium() {
@@ -250,17 +269,19 @@ Teste Refatorado para garantir maior cobertura:
         assertTrue(projeto.isVoucherAplicado(), "O projeto deveria estar com o voucher aplicado");
     }
 ````
+
 * **RED (Teste Falhando):**
-![img.png](imgs/img4_1.png)
+  ![img.png](imgs/img4_1.png)
 
 
 * **GREEN (Teste Passando):**
-![img.png](imgs/img4_2.png)
+  ![img.png](imgs/img4_2.png)
 
 
 * **BLUE (Refatoração e 100% de Cobertura):**
 
 Teste Refatorado para garantir maior cobertura:
+
 ````
 @Test
     public void devePermitirResgateDeVoucherEmProjetoRealAposTornarPremium() {
@@ -284,19 +305,20 @@ Teste Refatorado para garantir maior cobertura:
         assertTrue(projetoComSaldo.isVoucherAplicado(), "O voucher deveria ter sido aplicado no projeto");
     }
 ````
+
 ![img_1.png](imgs/img4_3.png)
 ![img.png](imgs/img4_4.png)
 
 ## Evidências:
 
 * H2 rodando:<br><br>
-![img.png](imgs/h2.png)
+  ![img.png](imgs/h2.png)
 * Swagger rodando:<br><br>
-![img.png](imgs/swagger.png)
+  ![img.png](imgs/swagger.png)
 * PgAdmin rodando:<br><br>
-![img_1.png](imgs/pgadmin.png)
+  ![img_1.png](imgs/pgadmin.png)
 * Frontend:<br><br>
-![img.png](imgs/frontend.png)
+  ![img.png](imgs/frontend.png)
 
 ---
 
@@ -309,15 +331,48 @@ cursos, conquistas e recompensas permanecem no Core, mas o Ranking tende a cresc
 capacidades. A decisão arquitetural não deve partir da tecnologia desejada, e sim dos drivers que realmente
 justificam mudança estrutural.
 
-## RFs AFETADOS
+Organizei em três tabelas Markdown, mantendo o conteúdo original e corrigindo pequenos erros de escrita.
 
-- **RF01 Ranking:** A funcionalidade de ranking tende a receber um nível maior de acessos com relação a outras funcionalidades da aplicação. Logo a mesma necessita ser escalável em quesitos funcionais e arquitetônicos.
-- **RF02 Conquistas:** A funcionalidade relaciona a conquistas e outras recompenças tendem a evoluir juntamente com a gamificação da plataforma, necessitando escalabilidade funcional, mas com uma comunicação efetiva com o ranking, já que a pontução vem das mesmas.
-  
-## RNFs ASRs
+## RFs afetados
 
-- **RNF 01 - Manutenibilidade:** Como o sistema pretende crescer de forma geral, é importante que a arquitetura implementada seja facilmente expansível, adotando facilmente novas funcionalidades e regras.
+| ID   | Requisito funcional | Justificativa                                                                                                                                                                                                                                                              |
+|------|---------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| RF01 | Ranking             | A funcionalidade de ranking tende a receber um volume maior de acessos em relação às demais funcionalidades da aplicação. Portanto, necessita de escalabilidade funcional e arquitetônica.                                                                                 |
+| RF02 | Conquistas          | As funcionalidades relacionadas a conquistas e outras recompensas tendem a evoluir juntamente com a gamificação da plataforma, necessitando de escalabilidade funcional e comunicação efetiva com o ranking, uma vez que a pontuação é proveniente dessas funcionalidades. |
 
-- **RNF 02 - Escalabilidade:** A previsão é que o ranking receba um carga maior de usuários, sendo assim, é importante que o mesmo escale horizontalmente quando for necessário.
+### RNFs — Atributos de qualidade significativos (ASRs)
 
-- **RNF 03 - Complexidade Operacional:** A equipe é reduzida e não possui experiência prévia com implementações de arquitetura modular ou micro-serviços, aumentando a dificuldade de implementação.
+| Aprovação | ID    | Atributo de qualidade    | Justificativa                                                                                                                                                              |
+|-----------|-------|--------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ✅        | RNF01 | Manutenibilidade         | Como o sistema pretende crescer de forma geral, é importante que a arquitetura seja facilmente expansível, permitindo a adição de novas funcionalidades e regras.          |
+| ✅        | RNF02 | Escalabilidade           | A previsão é que o ranking receba uma carga maior de usuários. Portanto, é importante que ele possa escalar horizontalmente quando necessário.                             |
+| ✅        | RNF03 | Complexidade operacional | A equipe é reduzida e não possui experiência prévia com arquiteturas modulares ou microsserviços, o que aumenta a dificuldade de implementação e operação dessas soluções. |
+| ❎        | RNF04 | Desempenho               | Não há evidências de deficiência de desempenho no cenário atual, embora esse atributo continue sendo relevante.                                                            |
+| ❎        | RNF05 | Testabilidade            | É relevante, mas não deve se sobrepor às prioridades arquiteturais do cenário atual, no qual a testabilidade não está sendo prejudicada.                                   |
+
+## RPCs — Restrições e premissas
+
+| ID    | Restrição ou premissa                 | Descrição                                                                                                                               |
+|-------|---------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
+| RPC01 | Core atual em Java/Spring Boot        | O núcleo atual do projeto deve ser mantido para evitar retrabalho desnecessário.                                                        |
+| RPC02 | Equipe de 3 desenvolvedores           | A equipe é reduzida e não possui experiência prévia com arquiteturas complexas, como microsserviços.                                    |
+| RPC03 | Banco de dados relacional já modelado | O banco PostgreSQL já está modelado, e não há evidências que justifiquem sua substituição.                                              |
+| RPC04 | Legado da AC1                         | O domínio existente deve ser preservado, evitando retrabalho e priorizando a evolução incremental, respeitando o princípio Open/Closed. |
+
+## Alternativas e Trade-Offs
+
+| Arquitetura         | Vantagens                                                                                                              | Desvantagens                                                                                                                  | Avaliação de implementação                                                                                                                                                 |
+|---------------------|------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Monólito em Camadas | Baixíssima complexidade operacional; Não há necessida de alterar a arquitetura existente;                              | Risco de aumento de acoplamento, causando problemas de escalabilidade e testabilidade                                         | É possível manter, mas dado o cenário de escalabilidade, pode não ser interessante mantê-lo, além de dificultar uma futura possibilidade de implementação de microsserviço |
+| Monólito Modular    | Diminui acoplamento, facilitando escalabilidade, testes e manutenção; Facilita uma futura migração para microsserviços | Os serviços ainda não são totalmente independentes; Complexidade de implementação baixa, mas existente, no contexto da equipe | Melhor possibilidade para o cenário atual, que pede escalabilidade individual, sem retrabalho excessivo                                                                    |
+| Microsserviços      | Serviços totalmente independentes, facilitando deploy, testes, manutenção e escala                                     | Altíssimo custo e complexidade de operação e infraestrutura; Migração complexa exigindo muito retrabalho                      | Para o cenário atual, não há necessidade da implementação do mesmo, que levaria ao overengineering                                                                         |
+
+## Decisão do Tech Lead
+
+> Dadas as necessidades expostas, de escalabilidade funcional, mas não de desempenho; E dadas as limitações técnicas da
+> equipe, que envolvem limitações de custo operacional e habilidades; Optou-se por seguir com a implementação da
+> arquitetura **monolítica modular**, evoluindo a arquitetura monolítica em camadas. A arquitetura monolítica modular
+> apresenta a menor complexidade operacional e melhor atende as necessidades do cenário apresentado. Essa evolução mantém
+> o core em Spring Boot, separando as funcionalidades em módulos, possibilitando escalar as funcionalidades necessárias
+> sem a necessidade ratrabalho, e com o menor custo operacional e de infraestrutura. A implementação de microsserviços só
+> virá a ser cogitada quando houver uma necessidade real de escalabilidade horizontal de uma determinada funcionalidade.
