@@ -289,11 +289,35 @@ Teste Refatorado para garantir maior cobertura:
 
 ## Evidências:
 
-* H2 rodando:
+* H2 rodando:<br><br>
 ![img.png](imgs/h2.png)
-* Swagger rodando:
+* Swagger rodando:<br><br>
 ![img.png](imgs/swagger.png)
-* PgAdmin rodando:
+* PgAdmin rodando:<br><br>
 ![img_1.png](imgs/pgadmin.png)
-* Frontend:
+* Frontend:<br><br>
 ![img.png](imgs/frontend.png)
+
+---
+
+## B1: DESAFIO 1
+
+## PROBLEMA
+
+O MVP de gamificação evolui de aproximadamente 1.000 usuários para um cenário de até 100.000 usuários. Ranking,
+cursos, conquistas e recompensas permanecem no Core, mas o Ranking tende a crescer mais que as demais
+capacidades. A decisão arquitetural não deve partir da tecnologia desejada, e sim dos drivers que realmente
+justificam mudança estrutural.
+
+## RFs AFETADOS
+
+- **RF01 Ranking:** A funcionalidade de ranking tende a receber um nível maior de acessos com relação a outras funcionalidades da aplicação. Logo a mesma necessita ser escalável em quesitos funcionais e arquitetônicos.
+- **RF02 Conquistas:** A funcionalidade relaciona a conquistas e outras recompenças tendem a evoluir juntamente com a gamificação da plataforma, necessitando escalabilidade funcional, mas com uma comunicação efetiva com o ranking, já que a pontução vem das mesmas.
+  
+## RNFs ASRs
+
+- **RNF 01 - Manutenibilidade:** Como o sistema pretende crescer de forma geral, é importante que a arquitetura implementada seja facilmente expansível, adotando facilmente novas funcionalidades e regras.
+
+- **RNF 02 - Escalabilidade:** A previsão é que o ranking receba um carga maior de usuários, sendo assim, é importante que o mesmo escale horizontalmente quando for necessário.
+
+- **RNF 03 - Complexidade Operacional:** A equipe é reduzida e não possui experiência prévia com implementações de arquitetura modular ou micro-serviços, aumentando a dificuldade de implementação.
