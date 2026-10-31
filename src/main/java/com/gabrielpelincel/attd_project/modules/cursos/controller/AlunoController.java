@@ -1,8 +1,8 @@
-package com.gabrielpelincel.attd_project.Controller;
+package com.gabrielpelincel.attd_project.modules.cursos.controller;
 
-import com.gabrielpelincel.attd_project.DTO.AlunoRequestDTO;
-import com.gabrielpelincel.attd_project.DTO.AlunoResponseDTO;
-import com.gabrielpelincel.attd_project.Service.AlunoService;
+import com.gabrielpelincel.attd_project.modules.cursos.dto.AlunoRequestDTO;
+import com.gabrielpelincel.attd_project.modules.cursos.dto.AlunoResponseDTO;
+import com.gabrielpelincel.attd_project.modules.cursos.service.AlunoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,8 +19,8 @@ public class AlunoController {
     }
 
     @PostMapping
-    public ResponseEntity<AlunoResponseDTO> criarAluno(@RequestBody AlunoRequestDTO requestDTO) {
-        AlunoResponseDTO response = alunoService.criarAluno(requestDTO);
+    public ResponseEntity<AlunoResponseDTO> criarAluno(@RequestBody(required = false) AlunoRequestDTO requestDTO) {
+        AlunoResponseDTO response = alunoService.criarAluno(requestDTO != null ? requestDTO : new AlunoRequestDTO());
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 

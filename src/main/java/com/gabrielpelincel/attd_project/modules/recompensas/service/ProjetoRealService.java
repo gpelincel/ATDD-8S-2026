@@ -1,9 +1,9 @@
-package com.gabrielpelincel.attd_project.Service;
+package com.gabrielpelincel.attd_project.modules.recompensas.service;
 
-import com.gabrielpelincel.attd_project.DTO.ProjetoRealRequestDTO;
-import com.gabrielpelincel.attd_project.DTO.ProjetoRealResponseDTO;
-import com.gabrielpelincel.attd_project.Domain.ProjetoReal;
-import com.gabrielpelincel.attd_project.Repository.ProjetoRealRepository;
+import com.gabrielpelincel.attd_project.modules.recompensas.domain.ProjetoReal;
+import com.gabrielpelincel.attd_project.modules.recompensas.dto.ProjetoRealRequestDTO;
+import com.gabrielpelincel.attd_project.modules.recompensas.dto.ProjetoRealResponseDTO;
+import com.gabrielpelincel.attd_project.modules.recompensas.repository.ProjetoRealRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,5 +29,17 @@ public class ProjetoRealService {
                 .stream()
                 .map(ProjetoRealResponseDTO::new)
                 .collect(Collectors.toList());
+    }
+
+    public ProjetoReal buscarPorIdOuNovo(Long idProjeto) {
+        if (idProjeto == null) {
+            return new ProjetoReal();
+        }
+        return projetoRepository.findById(idProjeto)
+                .orElseThrow(() -> new RuntimeException("Projeto Real não encontrado com o ID: " + idProjeto));
+    }
+
+    public ProjetoReal salvar(ProjetoReal projeto) {
+        return projetoRepository.save(projeto);
     }
 }

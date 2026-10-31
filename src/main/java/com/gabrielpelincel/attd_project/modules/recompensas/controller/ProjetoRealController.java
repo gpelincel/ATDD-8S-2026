@@ -1,8 +1,8 @@
-package com.gabrielpelincel.attd_project.Controller;
+package com.gabrielpelincel.attd_project.modules.recompensas.controller;
 
-import com.gabrielpelincel.attd_project.DTO.ProjetoRealRequestDTO;
-import com.gabrielpelincel.attd_project.DTO.ProjetoRealResponseDTO;
-import com.gabrielpelincel.attd_project.Service.ProjetoRealService;
+import com.gabrielpelincel.attd_project.modules.recompensas.dto.ProjetoRealRequestDTO;
+import com.gabrielpelincel.attd_project.modules.recompensas.dto.ProjetoRealResponseDTO;
+import com.gabrielpelincel.attd_project.modules.recompensas.service.ProjetoRealService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/projetos")
+@CrossOrigin(origins = "*")
 public class ProjetoRealController {
 
     private final ProjetoRealService projetoService;

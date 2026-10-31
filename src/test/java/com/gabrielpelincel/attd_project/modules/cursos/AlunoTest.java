@@ -1,12 +1,13 @@
-package com.gabrielpelincel.attd_project.DomainTest;
+package com.gabrielpelincel.attd_project.modules.cursos;
 
-import com.gabrielpelincel.attd_project.Domain.Aluno;
-import com.gabrielpelincel.attd_project.Domain.ProjetoReal;
+import com.gabrielpelincel.attd_project.modules.cursos.domain.Aluno;
+import com.gabrielpelincel.attd_project.modules.recompensas.domain.ProjetoReal;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AlunoTest {
+
     @Test
     public void deveMudarParaPremiumEGanharTresMoedasAoAtingirDozeCursos() {
         Aluno aluno = new Aluno();
@@ -38,13 +39,10 @@ public class AlunoTest {
         aluno.setVouchers(0);
         aluno.setMoedas(0);
         aluno.setAcessoVouchers(false);
-
         aluno.setAcessoProjetosReais(false);
 
         aluno.conquistarCurso();
-
         aluno.conquistarCurso();
-
         aluno.conquistarCurso();
 
         assertEquals(13, aluno.getCursosConquistados());
