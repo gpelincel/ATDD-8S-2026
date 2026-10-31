@@ -61,10 +61,10 @@ os 12 cursos PARA ter acesso ao recebimento dos vouchers e moedas.*
 ````
 
 * **RED (Teste Falhando):**
-  ![img.png](imgs/img_1_1.png)
+  ![img.png](docs/imgs/img_1_1.png)
 
 * **GREEN (Teste Passando):**
-  ![img.png](imgs/img_1_2.png)
+  ![img.png](docs/imgs/img_1_2.png)
 
 * **BLUE (Refatoração e 100% de Cobertura):**
   Teste Refatorado para maior cobertura:
@@ -94,8 +94,8 @@ os 12 cursos PARA ter acesso ao recebimento dos vouchers e moedas.*
     }
 ```
 
-![img.png](imgs/img_1_3.png)
-![img.png](imgs/img_1_4.png)
+![img.png](docs/imgs/img_1_3.png)
+![img.png](docs/imgs/img_1_4.png)
 
 ---
 
@@ -131,10 +131,10 @@ os 12 cursos PARA ter acesso ao recebimento dos vouchers e moedas.*
 ````
 
 * **RED (Teste Falhando):**
-  ![img.png](imgs/img_2_1.png)
+  ![img.png](docs/imgs/img_2_1.png)
 
 * **GREEN (Teste Passando):**
-  ![img.png](imgs/img_2_2.png)
+  ![img.png](docs/imgs/img_2_2.png)
 
 * **BLUE (Refatoração e 100% de Cobertura):**
   Teste Refatorado para maior cobertura:
@@ -161,8 +161,8 @@ os 12 cursos PARA ter acesso ao recebimento dos vouchers e moedas.*
     }
 ```
 
-![img.png](imgs/img_2_3.png)
-![img.png](imgs/img_2_4.png)
+![img.png](docs/imgs/img_2_3.png)
+![img.png](docs/imgs/img_2_4.png)
 ---
 
 ### Cenário 3: Receber voucher e acesso a projetos reais
@@ -197,11 +197,11 @@ os 12 cursos PARA ter acesso ao recebimento dos vouchers e moedas.*
 ````
 
 * **RED (Teste Falhando):**
-  ![img_1.png](imgs/img_1.png)
+  ![img_1.png](docs/imgs/img_1.png)
 
 
 * **GREEN (Teste Passando):**
-  ![img_2.png](imgs/img_2.png)
+  ![img_2.png](docs/imgs/img_2.png)
 
 
 * **BLUE (Refatoração e 100% de Cobertura):**
@@ -232,8 +232,8 @@ Teste Refatorado para garantir maior cobertura:
     }
 ````
 
-![img_3.png](imgs/img_3.png)
-![img_4.png](imgs/img_4.png)
+![img_3.png](docs/imgs/img_3.png)
+![img_4.png](docs/imgs/img_4.png)
 ---
 
 ### Cenário 4: Resgatar voucher em projeto real
@@ -271,11 +271,11 @@ Teste Refatorado para garantir maior cobertura:
 ````
 
 * **RED (Teste Falhando):**
-  ![img.png](imgs/img4_1.png)
+  ![img.png](docs/imgs/img4_1.png)
 
 
 * **GREEN (Teste Passando):**
-  ![img.png](imgs/img4_2.png)
+  ![img.png](docs/imgs/img4_2.png)
 
 
 * **BLUE (Refatoração e 100% de Cobertura):**
@@ -306,19 +306,19 @@ Teste Refatorado para garantir maior cobertura:
     }
 ````
 
-![img_1.png](imgs/img4_3.png)
-![img.png](imgs/img4_4.png)
+![img_1.png](docs/imgs/img4_3.png)
+![img.png](docs/imgs/img4_4.png)
 
 ## Evidências:
 
 * H2 rodando:<br><br>
-  ![img.png](imgs/h2.png)
+  ![img.png](docs/imgs/h2.png)
 * Swagger rodando:<br><br>
-  ![img.png](imgs/swagger.png)
+  ![img.png](docs/imgs/swagger.png)
 * PgAdmin rodando:<br><br>
-  ![img_1.png](imgs/pgadmin.png)
+  ![img_1.png](docs/imgs/pgadmin.png)
 * Frontend:<br><br>
-  ![img.png](imgs/frontend.png)
+  ![img.png](docs/imgs/frontend.png)
 
 ---
 
