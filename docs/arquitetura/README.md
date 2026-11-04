@@ -108,4 +108,6 @@ flowchart TD
     class FrontEnd cContainer
     class DB cDatabase
     class ModRanking,ModCursos,ModConquistas,ModRecompensas cModule
-
+```
+## Evidência de testes
+![img_5.png](docs/imgs/img_5.png)
