@@ -33,21 +33,6 @@ pipeline {
                 }
             }
         }
-
-        stage('Deploy Local (Docker Compose)') {
-            steps {
-                echo '--> Subindo banco de dados e API via Docker Compose...'
-                script {
-                    if (isUnix()) {
-                        sh 'docker compose down || true'
-                        sh 'docker compose up -d --build'
-                    } else {
-                        bat 'docker compose down || true'
-                        bat 'docker compose up -d --build'
-                    }
-                }
-            }
-        }
     }
 
     post {
