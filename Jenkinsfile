@@ -61,13 +61,11 @@ pipeline {
                             post {
                                 always {
                                     junit allowEmptyResults: true, testResults: 'target/surefire-reports/*.xml'
-                                    jacoco(
-                                        execPattern: 'target/jacoco.exec',
-                                        classPattern: 'target/classes',
-                                        sourcePattern: 'src/main/java',
-                                        changeBuildStatus: true,
-                                        maximumInstructionCoverage: '100',
-                                        minimumInstructionCoverage: '80'
+                                    recordCoverage(
+                                        tools: [[toolId: 'jacoco', pattern: 'target/site/jacoco/jacoco.xml']],
+                                        qualityGates: [
+                                            [threshold: 80.0, metric: 'INSTRUCTION', baseline: 'PROJECT', criticality: 'UNSTABLE']
+                                        ]
                                     )
                                     publishHTML(target: [
                                         allowMissing: true, alwaysLinkToLastBuild: true, keepAll: true,
