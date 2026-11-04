@@ -14,14 +14,17 @@ criptomoeda.
 
 ## User Stories (US)
 
-* **US1 (por Pedro Henrique Santana):** COMO Aluno do nível básico, QUERO que minha assinatura seja alterada para “Premium” automaticamente quando conquistar os 12 cursos PARA ter acesso ao recebimento dos vouchers e moedas.
-* **US2 (por Gabriel Pelincel Ramalho):** COMO Aluno do nível Premium, QUERO usar minhas moedas PARA comprar novos cursos.
+* **US1 (por Pedro Henrique Santana):** COMO Aluno do nível básico, QUERO que minha assinatura seja alterada para
+  “Premium” automaticamente quando conquistar os 12 cursos PARA ter acesso ao recebimento dos vouchers e moedas.
+* **US2 (por Gabriel Pelincel Ramalho):** COMO Aluno do nível Premium, QUERO usar minhas moedas PARA comprar novos
+  cursos.
 
 ### US Escolhida
 
 A User Story escolhida para o detalhamento BDD e TDD foi a **US1** (elaborada por Pedro Henrique Santana):
 
-> *COMO Aluno do nível básico, QUERO que minha assinatura seja alterada para “Premium” automaticamente quando conquistar os 12 cursos PARA ter acesso ao recebimento dos vouchers e moedas.*
+> *COMO Aluno do nível básico, QUERO que minha assinatura seja alterada para “Premium” automaticamente quando conquistar
+os 12 cursos PARA ter acesso ao recebimento dos vouchers e moedas.*
 
 ---
 
@@ -38,7 +41,9 @@ A User Story escolhida para o detalhamento BDD e TDD foi a **US1** (elaborada po
 * **E** receber 3 moedas
 
 #### 🔴🟢🔵 Evidências TDD (RGB) - Cenário 1
+
 * **Teste Unitário:**
+
 ````
 @Test
     public void deveMudarParaPremiumEGanharTresMoedasAoAtingirDozeCursos() {
@@ -54,14 +59,16 @@ A User Story escolhida para o detalhamento BDD e TDD foi a **US1** (elaborada po
         assertEquals(3, aluno.getMoedas(), "O aluno deve ganhar 3 moedas");
     }
 ````
+
 * **RED (Teste Falhando):**
-![img.png](imgs/img_1_1.png)
+  ![img.png](docs/imgs/img_1_1.png)
 
 * **GREEN (Teste Passando):**
-![img.png](imgs/img_1_2.png)
+  ![img.png](docs/imgs/img_1_2.png)
 
 * **BLUE (Refatoração e 100% de Cobertura):**
-Teste Refatorado para maior cobertura:
+  Teste Refatorado para maior cobertura:
+
 ```
 @Test
     public void deveMudarParaPremiumEGanharTresMoedasAoAtingirDozeCursos() {
@@ -86,10 +93,12 @@ Teste Refatorado para maior cobertura:
         assertEquals(3, aluno.getMoedas(), "Não deve ganhar moedas duplicadas ao passar de 12 cursos");
     }
 ```
-![img.png](imgs/img_1_3.png)
-![img.png](imgs/img_1_4.png)
+
+![img.png](docs/imgs/img_1_3.png)
+![img.png](docs/imgs/img_1_4.png)
 
 ---
+
 ### Cenário 2: Tornar-se Premium ao completar cursos
 
 **Redigido por:** Pedro Henrique Santana
@@ -101,10 +110,10 @@ Teste Refatorado para maior cobertura:
 * **E** sua assinatura deverá ser alterada
 * **E** deve possuir acesso ao recebimento dos voucher
 
-
 #### 🔴🟢🔵 Evidências TDD (RGB) - Cenário 2
 
 * **Teste Unitário:**
+
 ````
 @Test
     public void deveAlterarAssinaturaELiberarAcessoAVouchersAoAtingirDozeCursos() {
@@ -120,14 +129,16 @@ Teste Refatorado para maior cobertura:
         assertTrue(aluno.isAcessoVouchers(), "O aluno deveria ter acesso aos vouchers");
     }
 ````
+
 * **RED (Teste Falhando):**
-![img.png](imgs/img_2_1.png)
+  ![img.png](docs/imgs/img_2_1.png)
 
 * **GREEN (Teste Passando):**
-![img.png](imgs/img_2_2.png)
+  ![img.png](docs/imgs/img_2_2.png)
 
 * **BLUE (Refatoração e 100% de Cobertura):**
   Teste Refatorado para maior cobertura:
+
 ```
 @Test
     public void deveAlterarAssinaturaELiberarAcessoAVouchersAoAtingirDozeCursos() {
@@ -149,8 +160,9 @@ Teste Refatorado para maior cobertura:
         assertTrue(aluno.isAcessoVouchers());
     }
 ```
-![img.png](imgs/img_2_3.png)
-![img.png](imgs/img_2_4.png)
+
+![img.png](docs/imgs/img_2_3.png)
+![img.png](docs/imgs/img_2_4.png)
 ---
 
 ### Cenário 3: Receber voucher e acesso a projetos reais
@@ -165,7 +177,9 @@ Teste Refatorado para maior cobertura:
 * **E** ter acesso a projetos reais, durante os cursos
 
 #### 🔴🟢🔵 Evidências TDD (RGB) - Cenário 3
+
 * **Teste Unitário:**
+
 ````
 @Test
     public void deveReceberUmVoucherEAcessoAProjetosReaisAoTornarPremium() {
@@ -181,17 +195,19 @@ Teste Refatorado para maior cobertura:
         assertTrue(aluno.isAcessoProjetosReais(), "O aluno deveria ter acesso a projetos reais");
     }
 ````
+
 * **RED (Teste Falhando):**
-![img_1.png](imgs/img_1.png)
+  ![img_1.png](docs/imgs/img_1.png)
 
 
 * **GREEN (Teste Passando):**
-![img_2.png](imgs/img_2.png)
+  ![img_2.png](docs/imgs/img_2.png)
 
 
 * **BLUE (Refatoração e 100% de Cobertura):**
 
 Teste Refatorado para garantir maior cobertura:
+
 ````
 @Test
     public void deveReceberUmVoucherEAcessoAProjetosReaisAoTornarPremium() {
@@ -215,8 +231,9 @@ Teste Refatorado para garantir maior cobertura:
         assertTrue(aluno.isAcessoProjetosReais());
     }
 ````
-![img_3.png](imgs/img_3.png)
-![img_4.png](imgs/img_4.png)
+
+![img_3.png](docs/imgs/img_3.png)
+![img_4.png](docs/imgs/img_4.png)
 ---
 
 ### Cenário 4: Resgatar voucher em projeto real
@@ -231,7 +248,9 @@ Teste Refatorado para garantir maior cobertura:
 * **E** resgatar 1 voucher em 1 projeto real
 
 #### 🔴🟢🔵 Evidências TDD (RGB) - Cenário 4
+
 * **Teste Unitário:**
+
 ````
 @Test
     public void devePermitirResgateDeVoucherEmProjetoRealAposTornarPremium() {
@@ -250,17 +269,19 @@ Teste Refatorado para garantir maior cobertura:
         assertTrue(projeto.isVoucherAplicado(), "O projeto deveria estar com o voucher aplicado");
     }
 ````
+
 * **RED (Teste Falhando):**
-![img.png](imgs/img4_1.png)
+  ![img.png](docs/imgs/img4_1.png)
 
 
 * **GREEN (Teste Passando):**
-![img.png](imgs/img4_2.png)
+  ![img.png](docs/imgs/img4_2.png)
 
 
 * **BLUE (Refatoração e 100% de Cobertura):**
 
 Teste Refatorado para garantir maior cobertura:
+
 ````
 @Test
     public void devePermitirResgateDeVoucherEmProjetoRealAposTornarPremium() {
@@ -284,16 +305,17 @@ Teste Refatorado para garantir maior cobertura:
         assertTrue(projetoComSaldo.isVoucherAplicado(), "O voucher deveria ter sido aplicado no projeto");
     }
 ````
-![img_1.png](imgs/img4_3.png)
-![img.png](imgs/img4_4.png)
+
+![img_1.png](docs/imgs/img4_3.png)
+![img.png](docs/imgs/img4_4.png)
 
 ## Evidências:
 
-* H2 rodando:
-![img.png](imgs/h2.png)
-* Swagger rodando:
-![img.png](imgs/swagger.png)
-* PgAdmin rodando:
-![img_1.png](imgs/pgadmin.png)
-* Frontend:
-![img.png](imgs/frontend.png)
+* H2 rodando:<br><br>
+  ![img.png](docs/imgs/h2.png)
+* Swagger rodando:<br><br>
+  ![img.png](docs/imgs/swagger.png)
+* PgAdmin rodando:<br><br>
+  ![img_1.png](docs/imgs/pgadmin.png)
+* Frontend:<br><br>
+  ![img.png](docs/imgs/frontend.png)
