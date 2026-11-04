@@ -55,10 +55,10 @@ A User Story escolhida para o detalhamento BDD e TDD foi a **US1** (elaborada po
     }
 ````
 * **RED (Teste Falhando):**
-![img.png](imgs/img_1_1.png)
+![img.png](docs/imgs/img_1_1.png)
 
 * **GREEN (Teste Passando):**
-![img.png](imgs/img_1_2.png)
+![img.png](docs/imgs/img_1_2.png)
 
 * **BLUE (Refatoração e 100% de Cobertura):**
 Teste Refatorado para maior cobertura:
@@ -86,8 +86,8 @@ Teste Refatorado para maior cobertura:
         assertEquals(3, aluno.getMoedas(), "Não deve ganhar moedas duplicadas ao passar de 12 cursos");
     }
 ```
-![img.png](imgs/img_1_3.png)
-![img.png](imgs/img_1_4.png)
+![img.png](docs/imgs/img_1_3.png)
+![img.png](docs/imgs/img_1_4.png)
 
 ---
 ### Cenário 2: Tornar-se Premium ao completar cursos
@@ -121,10 +121,10 @@ Teste Refatorado para maior cobertura:
     }
 ````
 * **RED (Teste Falhando):**
-![img.png](imgs/img_2_1.png)
+![img.png](docs/imgs/img_2_1.png)
 
 * **GREEN (Teste Passando):**
-![img.png](imgs/img_2_2.png)
+![img.png](docs/imgs/img_2_2.png)
 
 * **BLUE (Refatoração e 100% de Cobertura):**
   Teste Refatorado para maior cobertura:
@@ -149,8 +149,8 @@ Teste Refatorado para maior cobertura:
         assertTrue(aluno.isAcessoVouchers());
     }
 ```
-![img.png](imgs/img_2_3.png)
-![img.png](imgs/img_2_4.png)
+![img.png](docs/imgs/img_2_3.png)
+![img.png](docs/imgs/img_2_4.png)
 ---
 
 ### Cenário 3: Receber voucher e acesso a projetos reais
@@ -182,11 +182,11 @@ Teste Refatorado para maior cobertura:
     }
 ````
 * **RED (Teste Falhando):**
-![img_1.png](imgs/img_1.png)
+![img_1.png](docs/imgs/img_1.png)
 
 
 * **GREEN (Teste Passando):**
-![img_2.png](imgs/img_2.png)
+![img_2.png](docs/imgs/img_2.png)
 
 
 * **BLUE (Refatoração e 100% de Cobertura):**
@@ -215,8 +215,8 @@ Teste Refatorado para garantir maior cobertura:
         assertTrue(aluno.isAcessoProjetosReais());
     }
 ````
-![img_3.png](imgs/img_3.png)
-![img_4.png](imgs/img_4.png)
+![img_3.png](docs/imgs/img_3.png)
+![img_4.png](docs/imgs/img_4.png)
 ---
 
 ### Cenário 4: Resgatar voucher em projeto real
@@ -251,11 +251,11 @@ Teste Refatorado para garantir maior cobertura:
     }
 ````
 * **RED (Teste Falhando):**
-![img.png](imgs/img4_1.png)
+![img.png](docs/imgs/img4_1.png)
 
 
 * **GREEN (Teste Passando):**
-![img.png](imgs/img4_2.png)
+![img.png](docs/imgs/img4_2.png)
 
 
 * **BLUE (Refatoração e 100% de Cobertura):**
@@ -284,16 +284,16 @@ Teste Refatorado para garantir maior cobertura:
         assertTrue(projetoComSaldo.isVoucherAplicado(), "O voucher deveria ter sido aplicado no projeto");
     }
 ````
-![img_1.png](imgs/img4_3.png)
-![img.png](imgs/img4_4.png)
+![img_1.png](docs/imgs/img4_3.png)
+![img.png](docs/imgs/img4_4.png)
 
 ## Evidências:
 
 * H2 rodando:
-![img.png](imgs/h2.png)
+![img.png](docs/imgs/h2.png)
 * Swagger rodando:
-![img.png](imgs/swagger.png)
+![img.png](docs/imgs/swagger.png)
 * PgAdmin rodando:
-![img_1.png](imgs/pgadmin.png)
+![img_1.png](docs/imgs/pgadmin.png)
 * Frontend:
-![img.png](imgs/frontend.png)
+![img.png](docs/imgs/frontend.png)
