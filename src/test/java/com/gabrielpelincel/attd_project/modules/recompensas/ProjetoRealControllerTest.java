@@ -4,10 +4,12 @@ import com.gabrielpelincel.attd_project.modules.recompensas.controller.ProjetoRe
 import com.gabrielpelincel.attd_project.modules.recompensas.dto.ProjetoRealRequestDTO;
 import com.gabrielpelincel.attd_project.modules.recompensas.dto.ProjetoRealResponseDTO;
 import com.gabrielpelincel.attd_project.modules.recompensas.service.ProjetoRealService;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
@@ -19,21 +21,20 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-@DisplayName("Testes do Controller: ProjetoRealController")
+@DisplayName("Testes do Controller: ProjetoRealController (com Mockito @Mock, @InjectMocks e ArgumentCaptor)")
 public class ProjetoRealControllerTest {
 
     @Mock
     private ProjetoRealService projetoService;
 
+    @InjectMocks
     private ProjetoRealController projetoRealController;
 
-    @BeforeEach
-    void setUp() {
-        projetoRealController = new ProjetoRealController(projetoService);
-    }
+    @Captor
+    private ArgumentCaptor<ProjetoRealRequestDTO> requestCaptor;
 
     @Test
-    @DisplayName("POST /api/projetos - Deve criar projeto e retornar 201 Created")
+    @DisplayName("POST /api/projetos - Deve criar projeto e verificar repasse ao mock")
     void deveCriarProjetoComSucesso() {
         ProjetoRealRequestDTO request = new ProjetoRealRequestDTO("Projeto Inovador");
         ProjetoRealResponseDTO responseDTO = new ProjetoRealResponseDTO();
@@ -49,11 +50,13 @@ public class ProjetoRealControllerTest {
         assertNotNull(response.getBody());
         assertEquals(1L, response.getBody().getId());
         assertEquals("Projeto Inovador", response.getBody().getNome());
-        verify(projetoService).criarProjeto(request);
+
+        verify(projetoService, times(1)).criarProjeto(requestCaptor.capture());
+        assertEquals("Projeto Inovador", requestCaptor.getValue().getNome());
     }
 
     @Test
-    @DisplayName("GET /api/projetos - Deve listar todos os projetos e retornar 200 OK")
+    @DisplayName("GET /api/projetos - Deve listar todos os projetos e retornar 200 OK via mock")
     void deveListarProjetosComSucesso() {
         ProjetoRealResponseDTO dto1 = new ProjetoRealResponseDTO();
         dto1.setId(1L);
@@ -69,6 +72,6 @@ public class ProjetoRealControllerTest {
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(2, response.getBody().size());
-        verify(projetoService).listarProjetos();
+        verify(projetoService, times(1)).listarProjetos();
     }
 }

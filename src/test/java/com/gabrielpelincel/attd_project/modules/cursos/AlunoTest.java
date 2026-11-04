@@ -4,11 +4,19 @@ import com.gabrielpelincel.attd_project.modules.cursos.domain.Aluno;
 import com.gabrielpelincel.attd_project.modules.recompensas.domain.ProjetoReal;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
-@DisplayName("Testes de Domínio: Aluno")
+@ExtendWith(MockitoExtension.class)
+@DisplayName("Testes de Domínio: Aluno (com Mockito para isolamento modular)")
 public class AlunoTest {
+
+    @Mock
+    private ProjetoReal projetoMock;
 
     @Test
     @DisplayName("Cenário 1 TDD: Deve mudar para Premium e ganhar 3 moedas ao atingir 12 cursos")
@@ -55,26 +63,27 @@ public class AlunoTest {
     }
 
     @Test
-    @DisplayName("Deve permitir resgate de voucher em projeto real após tornar Premium")
+    @DisplayName("Deve permitir resgate de voucher em mock de ProjetoReal após tornar Premium")
     public void devePermitirResgateDeVoucherEmProjetoRealAposTornarPremium() {
         Aluno aluno = new Aluno();
         aluno.setAssinatura("Básica");
         aluno.setCursosConquistados(11);
         aluno.setVouchers(0);
 
-        ProjetoReal projetoSemSaldo = new ProjetoReal();
-        ProjetoReal projetoComSaldo = new ProjetoReal();
+        // Tentativa de resgate sem saldo de voucher
+        aluno.resgatarVoucher(projetoMock);
+        verify(projetoMock, never()).aplicarVoucher();
 
-        aluno.resgatarVoucher(projetoSemSaldo);
-        assertFalse(projetoSemSaldo.isVoucherAplicado(), "Não deve aplicar voucher se não tiver saldo");
-
+        // Conquista o 12º curso e vira Premium com 1 voucher
         aluno.conquistarCurso();
-
-        aluno.resgatarVoucher(projetoComSaldo);
-
         assertEquals("Premium", aluno.getAssinatura(), "A assinatura deveria ser Premium");
+        assertEquals(1, aluno.getVouchers(), "O aluno deve possuir 1 voucher");
+
+        // Resgata o voucher no projeto mockado
+        aluno.resgatarVoucher(projetoMock);
+
         assertEquals(0, aluno.getVouchers(), "O voucher deveria ter sido descontado");
-        assertTrue(projetoComSaldo.isVoucherAplicado(), "O voucher deveria ter sido aplicado no projeto");
+        verify(projetoMock, times(1)).aplicarVoucher();
     }
 
     @Test

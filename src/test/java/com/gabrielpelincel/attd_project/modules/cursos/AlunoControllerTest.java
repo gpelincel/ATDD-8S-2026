@@ -4,10 +4,12 @@ import com.gabrielpelincel.attd_project.modules.cursos.controller.AlunoControlle
 import com.gabrielpelincel.attd_project.modules.cursos.dto.AlunoRequestDTO;
 import com.gabrielpelincel.attd_project.modules.cursos.dto.AlunoResponseDTO;
 import com.gabrielpelincel.attd_project.modules.cursos.service.AlunoService;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
@@ -18,21 +20,20 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-@DisplayName("Testes do Controller: AlunoController")
+@DisplayName("Testes do Controller: AlunoController (com Mockito @Mock e @InjectMocks)")
 public class AlunoControllerTest {
 
     @Mock
     private AlunoService alunoService;
 
+    @InjectMocks
     private AlunoController alunoController;
 
-    @BeforeEach
-    void setUp() {
-        alunoController = new AlunoController(alunoService);
-    }
+    @Captor
+    private ArgumentCaptor<AlunoRequestDTO> requestCaptor;
 
     @Test
-    @DisplayName("POST /api/alunos - Deve criar aluno com DTO informado")
+    @DisplayName("POST /api/alunos - Deve criar aluno com DTO informado e verificar chamada ao mock")
     void deveCriarAlunoComDtoInformado() {
         AlunoRequestDTO request = new AlunoRequestDTO("Premium");
         AlunoResponseDTO responseDTO = new AlunoResponseDTO();
@@ -47,10 +48,13 @@ public class AlunoControllerTest {
         assertNotNull(response.getBody());
         assertEquals(1L, response.getBody().getId());
         assertEquals("Premium", response.getBody().getAssinatura());
+
+        verify(alunoService, times(1)).criarAluno(requestCaptor.capture());
+        assertEquals("Premium", requestCaptor.getValue().getAssinaturaBase());
     }
 
     @Test
-    @DisplayName("POST /api/alunos - Deve criar aluno com requestDTO nulo")
+    @DisplayName("POST /api/alunos - Deve criar aluno com requestDTO nulo repassando DTO vazio default")
     void deveCriarAlunoComRequestNulo() {
         AlunoResponseDTO responseDTO = new AlunoResponseDTO();
         responseDTO.setId(2L);
@@ -63,10 +67,13 @@ public class AlunoControllerTest {
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
         assertNotNull(response.getBody());
         assertEquals(2L, response.getBody().getId());
+
+        verify(alunoService, times(1)).criarAluno(requestCaptor.capture());
+        assertNull(requestCaptor.getValue().getAssinaturaBase());
     }
 
     @Test
-    @DisplayName("POST /api/alunos/{id}/conquistar-curso - Deve retornar 200 OK no sucesso")
+    @DisplayName("POST /api/alunos/{id}/conquistar-curso - Deve retornar 200 OK no sucesso via mock")
     void deveRetornarOkAoConquistarCurso() {
         AlunoResponseDTO responseDTO = new AlunoResponseDTO();
         responseDTO.setId(1L);
@@ -78,10 +85,11 @@ public class AlunoControllerTest {
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(responseDTO, response.getBody());
+        verify(alunoService, times(1)).conquistarCurso(1L);
     }
 
     @Test
-    @DisplayName("POST /api/alunos/{id}/conquistar-curso - Deve retornar 404 Not Found quando aluno não existe")
+    @DisplayName("POST /api/alunos/{id}/conquistar-curso - Deve retornar 404 Not Found quando serviço lança exceção")
     void deveRetornarNotFoundAoConquistarCursoInexistente() {
         when(alunoService.conquistarCurso(99L)).thenThrow(new RuntimeException("Aluno não encontrado"));
 
@@ -89,6 +97,7 @@ public class AlunoControllerTest {
 
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
         assertEquals("Aluno não encontrado", response.getBody());
+        verify(alunoService, times(1)).conquistarCurso(99L);
     }
 
     @Test
@@ -104,10 +113,11 @@ public class AlunoControllerTest {
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(responseDTO, response.getBody());
+        verify(alunoService, times(1)).resgatarVoucher(1L);
     }
 
     @Test
-    @DisplayName("POST /api/alunos/{id}/resgatar-voucher - Deve retornar 400 Bad Request em caso de erro")
+    @DisplayName("POST /api/alunos/{id}/resgatar-voucher - Deve retornar 400 Bad Request em caso de exceção no mock")
     void deveRetornarBadRequestAoFalharResgateDeVoucher() {
         when(alunoService.resgatarVoucher(1L)).thenThrow(new RuntimeException("Sem saldo"));
 
@@ -115,6 +125,7 @@ public class AlunoControllerTest {
 
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
         assertEquals("Sem saldo", response.getBody());
+        verify(alunoService, times(1)).resgatarVoucher(1L);
     }
 
     @Test
@@ -129,6 +140,7 @@ public class AlunoControllerTest {
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(responseDTO, response.getBody());
+        verify(alunoService, times(1)).buscarAluno(1L);
     }
 
     @Test
@@ -140,5 +152,6 @@ public class AlunoControllerTest {
 
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
         assertEquals("Aluno não encontrado", response.getBody());
+        verify(alunoService, times(1)).buscarAluno(99L);
     }
 }

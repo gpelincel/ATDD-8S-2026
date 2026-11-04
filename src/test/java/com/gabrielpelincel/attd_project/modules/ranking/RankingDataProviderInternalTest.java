@@ -4,10 +4,10 @@ import com.gabrielpelincel.attd_project.modules.cursos.domain.Aluno;
 import com.gabrielpelincel.attd_project.modules.cursos.repository.AlunoRepository;
 import com.gabrielpelincel.attd_project.modules.ranking.service.RankingDataProvider;
 import com.gabrielpelincel.attd_project.modules.ranking.service.RankingDataProviderInternal;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -17,18 +17,14 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-@DisplayName("Testes de Integração Modular: RankingDataProviderInternal")
+@DisplayName("Testes de Integração Modular: RankingDataProviderInternal (com Mockito @Mock e @InjectMocks)")
 public class RankingDataProviderInternalTest {
 
     @Mock
     private AlunoRepository alunoRepository;
 
+    @InjectMocks
     private RankingDataProviderInternal rankingDataProviderInternal;
-
-    @BeforeEach
-    void setUp() {
-        rankingDataProviderInternal = new RankingDataProviderInternal(alunoRepository);
-    }
 
     @Test
     @DisplayName("Deve converter lista de alunos em itens de ranking para desacoplamento de fronteira")
@@ -60,6 +56,7 @@ public class RankingDataProviderInternalTest {
         assertEquals(14, itens.get(1).cursosConquistados());
         assertEquals(6, itens.get(1).moedas());
 
-        verify(alunoRepository).findAll();
+        verify(alunoRepository, times(1)).findAll();
+        verifyNoMoreInteractions(alunoRepository);
     }
 }

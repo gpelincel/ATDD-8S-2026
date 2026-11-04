@@ -3,31 +3,27 @@ package com.gabrielpelincel.attd_project.modules.ranking;
 import com.gabrielpelincel.attd_project.modules.ranking.dto.PosicaoRankingDTO;
 import com.gabrielpelincel.attd_project.modules.ranking.service.RankingDataProvider;
 import com.gabrielpelincel.attd_project.modules.ranking.service.RankingServiceImpl;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-@DisplayName("Testes de Serviço: RankingServiceImpl")
+@DisplayName("Testes de Serviço: RankingServiceImpl (com Mockito @Mock e @InjectMocks)")
 public class RankingServiceTest {
 
     @Mock
     private RankingDataProvider rankingDataProvider;
 
+    @InjectMocks
     private RankingServiceImpl rankingService;
-
-    @BeforeEach
-    void setUp() {
-        rankingService = new RankingServiceImpl(rankingDataProvider);
-    }
 
     @Test
     @DisplayName("Deve ordenar alunos por cursos conquistados e moedas")
@@ -60,6 +56,8 @@ public class RankingServiceTest {
         // 4º lugar: 5 cursos
         assertEquals(4, ranking.get(3).getPosicao());
         assertEquals(1L, ranking.get(3).getAlunoId());
+
+        verify(rankingDataProvider, times(1)).obterDadosAlunosParaRanking();
     }
 
     @Test
@@ -76,6 +74,8 @@ public class RankingServiceTest {
 
         assertEquals(2, posicao.getPosicao());
         assertEquals(20L, posicao.getAlunoId());
+
+        verify(rankingDataProvider, times(1)).obterDadosAlunosParaRanking();
     }
 
     @Test
@@ -85,5 +85,7 @@ public class RankingServiceTest {
 
         RuntimeException ex = assertThrows(RuntimeException.class, () -> rankingService.obterPosicaoPorAlunoId(999L));
         assertEquals("Aluno não encontrado no ranking: 999", ex.getMessage());
+
+        verify(rankingDataProvider, times(1)).obterDadosAlunosParaRanking();
     }
 }
