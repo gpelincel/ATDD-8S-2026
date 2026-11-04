@@ -4,6 +4,7 @@ import com.gabrielpelincel.attd_project.modules.ranking.dto.PosicaoRankingDTO;
 import com.gabrielpelincel.attd_project.modules.ranking.service.RankingDataProvider;
 import com.gabrielpelincel.attd_project.modules.ranking.service.RankingServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -15,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
+@DisplayName("Testes de Serviço: RankingServiceImpl")
 public class RankingServiceTest {
 
     @Mock
@@ -28,6 +30,7 @@ public class RankingServiceTest {
     }
 
     @Test
+    @DisplayName("Deve ordenar alunos por cursos conquistados e moedas")
     void deveOrdenarAlunosPorCursosConquistadosEMoedas() {
         List<RankingDataProvider.AlunoRankingItem> mockItems = List.of(
                 new RankingDataProvider.AlunoRankingItem(1L, "Básica", 5, 0),
@@ -60,6 +63,7 @@ public class RankingServiceTest {
     }
 
     @Test
+    @DisplayName("Deve obter posição individual do aluno existente")
     void deveObterPosicaoIndividualDoAluno() {
         List<RankingDataProvider.AlunoRankingItem> mockItems = List.of(
                 new RankingDataProvider.AlunoRankingItem(10L, "Premium", 20, 10),
@@ -72,5 +76,14 @@ public class RankingServiceTest {
 
         assertEquals(2, posicao.getPosicao());
         assertEquals(20L, posicao.getAlunoId());
+    }
+
+    @Test
+    @DisplayName("Deve lançar exceção ao buscar posição de aluno não presente no ranking")
+    void deveLancarExcecaoQuandoAlunoNaoEstiverNoRanking() {
+        when(rankingDataProvider.obterDadosAlunosParaRanking()).thenReturn(List.of());
+
+        RuntimeException ex = assertThrows(RuntimeException.class, () -> rankingService.obterPosicaoPorAlunoId(999L));
+        assertEquals("Aluno não encontrado no ranking: 999", ex.getMessage());
     }
 }
